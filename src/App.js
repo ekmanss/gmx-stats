@@ -5,6 +5,7 @@ import cx from "classnames";
 import Arbitrum from './views/Arbitrum';
 import Referrals from './views/Referrals';
 import Avalanche from './views/Avalanche';
+import Bsc from './views/Ede_bsc';
 import Trading from './views/Trading';
 import './App.css';
 import logoIcon from './img/logo_GMX.svg';
@@ -32,6 +33,9 @@ function AppHeaderLinks({ mode, small, clickCloseIcon }) {
       </div>
       <div className="App-header-link-container">
         <NavLink to="/avalanche" className="nav-link">Avalanche</NavLink>
+      </div>
+      <div className="App-header-link-container">
+        <NavLink to="/bsc" className="nav-link">Bsc</NavLink>
       </div>
     </div>
   )
@@ -95,6 +99,7 @@ const App = () => {
               </a>
               <NavLink to="/" exact className="nav-link" activeClassName="active">Arbitrum</NavLink>
               <NavLink to="/avalanche" className="nav-link">Avalanche</NavLink>
+              <NavLink to="/bsc" className="nav-link">Bsc</NavLink>
             </div>
             <div className="nav-right">
               <a href="https://gmx.io" target="_blank" className="nav-link">APP</a>
@@ -125,6 +130,9 @@ const App = () => {
             )} />
             <Route exact path="/avalanche" render={(props) => (
               <Avalanche {...props} mode={mode} />
+            )} />
+            <Route exact path="/bsc" render={(props) => (
+              <Bsc {...props} mode={mode} />
             )} />
             <Route exact path="/referrals/:chainName" render={(props) => (
               <Referrals {...props} mode={mode} />
