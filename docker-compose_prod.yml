@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  ede_stats_prod:
+    environment:
+      - NODE_ENV=production
+    image: 37976120/ede_stats:prod
+    container_name: ede_stats_prod
+    restart: always
+    ports:
+      - "3233:3113"
+    privileged: true
+    volumes:
+      - "~/logs:/usr/src/app/tasks/logs:rw"
+    networks:
+      - lend_default
+networks:
+  lend_default:
+    driver: bridge
