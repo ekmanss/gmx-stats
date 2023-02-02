@@ -8,7 +8,7 @@ services:
     container_name: ede_stats_prod
     restart: always
     ports:
-      - "3233:3113"
+      - "3233:8080"
     privileged: true
     volumes:
       - "~/logs:/usr/src/app/tasks/logs:rw"

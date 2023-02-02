@@ -7,8 +7,8 @@ COPY package.json /app
 RUN yarn install
 
 COPY . /app
-RUN yarn build
+RUN yarn build:prod
 
-EXPOSE 3113
+EXPOSE 8080
 
-CMD ["yarn", "start"]
+CMD ["node", "./build/server.js"]
