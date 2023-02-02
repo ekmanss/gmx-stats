@@ -7,8 +7,14 @@ import {useLastBlock, useLastSubgraphBlock} from "../dataProvider";
 import { formatNumber } from "./helpers";
 import {
   useTotalVolumeFromServer,
-  useFeesData
+  // useFeesData
 } from "./dataProvider";
+
+import {
+  useFeesData,
+
+} from '../dataProvider'
+
 import {RiLoader5Fill} from "react-icons/ri";
 
 const NOW = Math.floor(Date.now() / 1000)
@@ -49,16 +55,17 @@ function Home(props) {
   const from = dataRange.fromValue ? Math.floor(+new Date(dataRange.fromValue) / 1000) : undefined
   const to = dataRange.toValue ? Math.floor(+new Date(dataRange.toValue) / 1000) : NOW
   const params = { from, to, groupPeriod }
+
   const [feesData, feesLoading] = useFeesData(params)
-  const [totalFeesData, totalFeesLoading] = useFeesData({});
+  const [totalFeesData, totalFeesLoading] = useFeesData({ chainName: 'avalanche' })
   const [totalFees, totalFeesDelta] = useMemo(() => {
     if (!totalFeesData) {
-      return [];
+      return []
     }
-    const total = totalFeesData[totalFeesData.length - 1]?.cumulative;
-    const delta = total - totalFeesData[totalFeesData.length - 2]?.cumulative;
-    return [total, delta];
-  }, [totalFeesData]);
+    const total = totalFeesData[totalFeesData.length - 1]?.cumulative
+    const delta = total - totalFeesData[totalFeesData.length - 2]?.cumulative
+    return [total, delta]
+  }, [totalFeesData])
 
 
   return (
